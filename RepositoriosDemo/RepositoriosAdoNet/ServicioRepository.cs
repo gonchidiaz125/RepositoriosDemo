@@ -8,16 +8,12 @@ using System.Threading.Tasks;
 
 namespace RepositoriosDemo.RepositoriosAdoNet
 {    
-    public class ServicioRepository
+    public class ServicioRepository : RepositorioBase
     {
-        private readonly string _connectionString;
-
-        public ServicioRepository()
+        public ServicioRepository() : base("Servicio")
         {
-            var config = new ConfiguracionBD();
-            _connectionString = config.ObtenerStringConexion();
         }
-                
+
         public void Create(Servicio servicio)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -143,18 +139,6 @@ namespace RepositoriosDemo.RepositoriosAdoNet
             }
         }
 
-
-        public void Delete(Guid id)
-        {
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                var command = new SqlCommand("DELETE FROM Servicios WHERE Id = @Id", connection);
-                command.Parameters.AddWithValue("@Id", id);
-
-                connection.Open();
-                command.ExecuteNonQuery();
-            }
-        }
     }
 
 

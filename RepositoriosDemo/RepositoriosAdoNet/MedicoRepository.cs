@@ -9,14 +9,10 @@ using System.Threading.Tasks;
 namespace RepositoriosDemo.RepositoriosAdoNet
 {
 
-    public class MedicoRepository
+    public class MedicoRepository : RepositorioBase
     {
-        private readonly string _connectionString;
-
-        public MedicoRepository()
+        public MedicoRepository() : base("Medico")
         {
-            var config = new ConfiguracionBD();
-            _connectionString = config.ObtenerStringConexion();
         }
 
         public void Create(Medico entity)
@@ -146,18 +142,7 @@ namespace RepositoriosDemo.RepositoriosAdoNet
                 command.ExecuteNonQuery();
             }
         }
-
-        public void Delete(Guid id)
-        {
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                var command = new SqlCommand("DELETE FROM Medico WHERE Id = @Id", connection);
-                command.Parameters.AddWithValue("@Id", id);
-
-                connection.Open();
-                command.ExecuteNonQuery();
-            }
-        }
+        
     }
 
 }

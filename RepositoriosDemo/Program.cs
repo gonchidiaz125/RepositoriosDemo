@@ -49,9 +49,9 @@ var medicoRepository = new MedicoRepository();
 var servicioRepository = new ServicioRepository();
 
 // Insertar las entidades en la base de datos
-centroDeAtencionRepository.Create(centroDeAtencion);
-medicoRepository.Create(medico);
-servicioRepository.Create(servicio);
+//centroDeAtencionRepository.Create(centroDeAtencion);
+//medicoRepository.Create(medico);
+//servicioRepository.Create(servicio);
 
 var todosLosCentros = centroDeAtencionRepository.GetAll();
 var todosLosServicios = servicioRepository.GetAll();
@@ -74,9 +74,18 @@ Console.WriteLine("");
 
 Console.WriteLine("Medicos");
 ImprimirEntidades(todosLosMedicos);
+
+
+Guid guidValue = Guid.Parse("3398403A-B873-45AD-B9C2-EE00D05EF54C");
+medicoRepository.Delete(guidValue);
+
+
+todosLosMedicos = medicoRepository.GetAll();
+Console.WriteLine("Medicos");
+ImprimirEntidades(todosLosMedicos);
+
+
 Console.ReadLine();
-
-
 
 void ImprimirEntidades<T>(IEnumerable<T> lista) where T : EntidadBase
 {
@@ -86,4 +95,7 @@ void ImprimirEntidades<T>(IEnumerable<T> lista) where T : EntidadBase
     }
     Console.WriteLine("");
 }
+
+
+
 
