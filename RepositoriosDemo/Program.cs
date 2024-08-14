@@ -85,13 +85,22 @@ Console.WriteLine("Medicos");
 ImprimirEntidades(todosLosMedicos);
 
 
+// Dar de baja un Centro
+Guid centroId = Guid.Parse("88ACB961-B349-4149-B35D-43967D2647EA");
+centroDeAtencionRepository.DarDeBaja(centroId, "Gonchi");
+
+todosLosCentros = centroDeAtencionRepository.GetAll();
+Console.WriteLine("Centros luego de DarDeBaja");
+ImprimirEntidades(todosLosCentros);
+
+
 Console.ReadLine();
 
 void ImprimirEntidades<T>(IEnumerable<T> lista) where T : EntidadBase
 {
     foreach (var t in lista)
     {
-        Console.WriteLine($"Id:{t.Id} - {t.Nombre}");
+        Console.WriteLine($"Id:{t.Id} - {t.Nombre} - Activo:{t.Activo}");
     }
     Console.WriteLine("");
 }
