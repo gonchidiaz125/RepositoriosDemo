@@ -1,14 +1,10 @@
 ﻿using RepositoriosDemo.Entidades;
-using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RepositoriosDemo.RepositoriosAdoNet
 {
-    public class CentroDeAtencionRepository : RepositorioBase
+
+    public class CentroDeAtencionRepository : RepositorioBase, ICentroDeAtencionRepository
     {
         public CentroDeAtencionRepository() : base("CentroDeAtencion")
         {
@@ -73,7 +69,7 @@ namespace RepositoriosDemo.RepositoriosAdoNet
             }
         }
 
-        public IEnumerable<CentroDeAtencion> GetAll()
+        public List<CentroDeAtencion> GetAll()
         {
             var centros = new List<CentroDeAtencion>();
 

@@ -1,4 +1,6 @@
-﻿namespace RepositoriosDemo.Entidades
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace RepositoriosDemo.Entidades
 {
     /// <summary>
     ///  Es una clase abstracta que contiene las propiedades comunes a todas las entidades. Todas las entidades que heredan de esta clase tendrán estas propiedades.
@@ -6,14 +8,29 @@
     /// </summary>
     public abstract class EntidadBase
     {
+        [Key]
         public Guid Id { get; set; }
+
+        [Required]
+        [MaxLength(100)]
         public string Nombre { get; set; } = string.Empty;
+
+        [Required]
         public bool Activo { get; set; } = true;
+
+        [Required]
         public DateTime FechaAlta { get; set; }
+
+        [Required]
+        [MaxLength(50)]
         public string UsuarioAlta { get; set; } = string.Empty;
         public DateTime? FechaModificacion { get; set; }
+
+        [MaxLength(50)]
         public string? UsuarioModificacion { get; set; }
         public DateTime? FechaBaja { get; set; }
+
+        [MaxLength(50)]
         public string? UsuarioBaja { get; set; }
 
         public virtual void MostrarDetalles()
